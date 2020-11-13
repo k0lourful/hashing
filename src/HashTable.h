@@ -2,21 +2,33 @@
 
 class HashTable {
     int *values;
-    int *used;
+    bool *used;
     int size;
 
 public:
-//    HashTable();
-    HashTable(const int& s);
+    HashTable() : size(0) {}
 
-    int hash(const int &data);
+    HashTable(const int &s) : size(s), values(new int[s]), used(new bool[s]) {}
 
-    void insert(const int &data);
+    ~HashTable() { clear(); delete[] values; delete[] used; size = 0; }
 
-    int dist(int a, int b);
+    void createTable(const int &s);
 
-    void remove(const int &data);
+    int getSize() const;
 
-    bool find(const int &data);
+    int getValue(const int &ind) const;
 
+    int hash(const int &data) const;
+
+    int insert(const int &data);
+
+    int dist(int a, int b) const;
+
+    int remove(const int &data);
+
+    bool find(const int &data) const;
+
+    void generateRandomTable(const int &s);
+
+    void clear();
 };
